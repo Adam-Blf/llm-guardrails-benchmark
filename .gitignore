@@ -39,3 +39,6 @@ hf_cache/
 Thumbs.db
 .idea/
 .vscode/
+
+# Local run logs
+*.log
