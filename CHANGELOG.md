@@ -4,6 +4,14 @@ Toutes les évolutions notables du projet sont consignées ici.
 Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 La version de référence est celle de `pyproject.toml`.
 
+## [0.3.0] - 2026-11-05
+
+### Ajouté
+
+- Interface commune `Guardrail` (décision, score, latence, erreurs isolées) et registre d'adaptateurs à import paresseux.
+- Adaptateurs : référence regex EN et FR, Rebuff (couche heuristique), DeBERTa v2 de Protect AI, Prompt-Guard-86M, GLiNER2 GLiGuard et GLiNER2 PII, Presidio (EN et FR), LLM Guard, Llama Guard 3 via Ollama ou transformers, NeMo Guardrails (rail `self check input` sur Ollama), Lakera Guard.
+- Les outils inaccessibles (clé API absente, modèle à licence, service arrêté) sont sautés avec une raison écrite, jamais en plein milieu d'une exécution.
+
 ## [0.2.0] - 2026-11-05
 
 ### Ajouté
