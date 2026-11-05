@@ -33,7 +33,8 @@ def _cmd_analyse(args: argparse.Namespace) -> int:
     from guardbench.analysis import analyse
 
     tables = analyse(Path(args.results) / args.run, n_boot=args.n_boot, seed=args.seed)
-    cols = ["tool", "attack_macro_f1", "fr_benign_fpr", "lat_p50_ms", "lat_p95_ms"]
+    cols = ["tool", "attack_macro_youden", "attack_macro_f1", "fr_benign_fpr",
+            "lat_p50_ms", "lat_p95_ms"]
     print(tables["overall"][cols].to_string(index=False, float_format=lambda v: f"{v:.3f}"))
     return 0
 
@@ -49,7 +50,7 @@ def _cmd_figures(args: argparse.Namespace) -> int:
 def _cmd_report(args: argparse.Namespace) -> int:
     from guardbench.report.build import build_pdf
 
-    print(build_pdf(Path(args.results), Path(args.out)))
+    print(build_pdf(Path(args.out)))
     return 0
 
 

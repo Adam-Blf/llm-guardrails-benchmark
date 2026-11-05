@@ -70,16 +70,19 @@ def overall(metrics: pd.DataFrame, df: pd.DataFrame, status: dict) -> pd.DataFra
                 "tool": tool,
                 "kind": status.get(tool, {}).get("kind", ""),
                 "attack_macro_f1": attacks["f1"].mean(),
+                "attack_macro_youden": attacks["youden"].mean(),
                 "attack_macro_recall": attacks["recall"].mean(),
                 "attack_macro_fpr": attacks["fpr"].mean(),
                 "claimed_macro_f1": det.loc[det.index.intersection(claimed), "f1"].mean(),
+                "claimed_macro_youden": det.loc[
+                    det.index.intersection(claimed), "youden"].mean(),
                 "fr_benign_fpr": fr["fpr"].iloc[0] if len(fr) else float("nan"),
                 "lat_p50_ms": lat.quantile(0.5),
                 "lat_p95_ms": lat.quantile(0.95),
                 "errors": int(df[(df["tool"] == tool)]["is_error"].sum()),
             }
         )
-    return pd.DataFrame(rows).sort_values("attack_macro_f1", ascending=False)
+    return pd.DataFrame(rows).sort_values("attack_macro_youden", ascending=False)
 
 
 def coverage(metrics: pd.DataFrame, status: dict) -> pd.DataFrame:
