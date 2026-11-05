@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+build/
+dist/
+
+# Secrets (defensive)
+.env
+.env.*
+!.env.example
+*secret*
+*secrets*
+*.token
+*.pem
+*.key
+*.p12
+ghp_*
+github_pat_*
+credentials*.json
+
+# Data caches and model weights (downloaded at run time, never committed)
+data/cache/
+.cache/
+*.safetensors
+*.bin
+*.pt
+*.onnx
+*.gguf
+hf_cache/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
