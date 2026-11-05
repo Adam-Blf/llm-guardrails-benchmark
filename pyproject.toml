@@ -1,14 +1,14 @@
 [build-system]
-requires = ["setuptools>=69", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "guardbench"
-version = "0.1.0"
+version = "0.2.0"
 description = "Benchmark of guardrails for LLM and LLM agent security"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "MIT"
 authors = [
   { name = "Adam Beloucif", email = "adam.beloucif@efrei.net" },
   { name = "Emilien Morice" },
