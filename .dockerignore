@@ -1,0 +1,9 @@
+.git
+.venv
+data
+results
+reports/*.pdf
+reports/figures
+**/__pycache__
+.env
+*.log
