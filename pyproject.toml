@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "guardbench"
-version = "0.5.0"
+version = "0.6.0"
 description = "Benchmark of guardrails for LLM and LLM agent security"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -37,7 +37,7 @@ tools = [
 ]
 # Rebuff 0.1.1 pins langchain 0.1 and numpy<2. Install it apart with
 # `pip install --no-deps rebuff==0.1.1`: only its heuristic module is used.
-dev = ["pytest>=8", "ruff>=0.6"]
+dev = ["pytest>=8", "ruff>=0.6", "pymupdf>=1.24"]
 
 [project.scripts]
 guardbench = "guardbench.cli:main"

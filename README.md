@@ -1,7 +1,7 @@
 # llm-guardrails-benchmark
 
 <!-- adam-badges:start -->
-[![version](https://img.shields.io/badge/version-0.5.0-163767?style=flat-square)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-0.6.0-163767?style=flat-square)](CHANGELOG.md)
 [![CI](https://img.shields.io/github/actions/workflow/status/Adam-Blf/llm-guardrails-benchmark/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/Adam-Blf/llm-guardrails-benchmark/actions/workflows/ci.yml)
 [![commits](https://img.shields.io/github/commit-activity/t/Adam-Blf/llm-guardrails-benchmark?color=001329&label=commits&style=flat-square)](https://github.com/Adam-Blf/llm-guardrails-benchmark/commits)
 [![visites](https://hits.sh/github.com/Adam-Blf/llm-guardrails-benchmark.svg?style=flat-square&label=visites&color=001329)](https://hits.sh/github.com/Adam-Blf/llm-guardrails-benchmark/)
