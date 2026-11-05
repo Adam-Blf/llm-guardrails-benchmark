@@ -74,8 +74,9 @@ class LlamaGuardHF(Guardrail):
     kind = "llm"
     claimed = _CLAIMED
 
-    def __init__(self, model_id: str = "meta-llama/Llama-Guard-3-8B") -> None:
+    def __init__(self, model_id: str = "meta-llama/Llama-Guard-3-8B", load_4bit: bool = False):
         self.model_id = model_id
+        self.load_4bit = load_4bit
         self.name = "llama_guard3_" + model_id.rsplit("-", 1)[-1].lower() + "_hf"
         self._tok = self._model = None
 
@@ -90,9 +91,19 @@ class LlamaGuardHF(Guardrail):
 
         token = os.getenv("HF_TOKEN")
         self._tok = AutoTokenizer.from_pretrained(self.model_id, token=token)
-        dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
+        # fp16 on GPU: the Colab T4 has no native bfloat16. The 8B model does not
+        # fit a 16 GB T4 in fp16, so it is loaded in 4-bit NF4 (bitsandbytes).
+        extra = {}
+        if self.load_4bit:
+            from transformers import BitsAndBytesConfig
+
+            extra["quantization_config"] = BitsAndBytesConfig(
+                load_in_4bit=True, bnb_4bit_quant_type="nf4",
+                bnb_4bit_compute_dtype=torch.float16,
+            )
+        dtype = torch.float16 if torch.cuda.is_available() else torch.float32
         self._model = AutoModelForCausalLM.from_pretrained(
-            self.model_id, token=token, torch_dtype=dtype, device_map="auto"
+            self.model_id, token=token, torch_dtype=dtype, device_map="auto", **extra
         )
         self._ids = {
             w: self._tok.encode(w, add_special_tokens=False)[0] for w in ("safe", "unsafe")
