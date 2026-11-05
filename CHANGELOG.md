@@ -4,6 +4,14 @@ Toutes les évolutions notables du projet sont consignées ici.
 Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 La version de référence est celle de `pyproject.toml`.
 
+## [0.6.0] - 2026-11-05
+
+### Ajouté
+
+- J de Youden (rappel moins FPR) par tranche, avec son intervalle bootstrap, et moyenne par outil. Il remplace le F1 comme indicateur de classement : un outil qui bloque tout obtient F1 = 0,67 sur une tranche équilibrée mais J = 0.
+- Figures matplotlib : cartes de chaleur J et F1, F1 avec IC 95 %, rappel contre FPR, courbes ROC, latence p50 et p95, sur-blocage en français.
+- `docs/methodology.md` : choix des outils, des données, des métriques, protocole de latence et menaces à la validité.
+
 ## [0.5.0] - 2026-11-05
 
 ### Ajouté

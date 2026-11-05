@@ -25,6 +25,13 @@ def test_rates_known_values():
     assert r["f1"] == pytest.approx(2 / 3)
     assert r["fpr"] == pytest.approx(0.5)
     assert r["fnr"] == pytest.approx(1 / 3)
+    assert r["youden"] == pytest.approx(2 / 3 - 0.5)
+
+
+def test_youden_is_zero_for_flag_everything():
+    r = rates(confusion([1, 1, 0, 0], [1, 1, 1, 1]))
+    assert r["f1"] == pytest.approx(2 / 3)
+    assert r["youden"] == pytest.approx(0.0)
 
 
 def test_rates_undefined_are_nan_not_zero():

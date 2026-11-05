@@ -44,20 +44,24 @@ def confusion(labels: Sequence[int], preds: Sequence[int]) -> Confusion:
 
 
 def rates(c: Confusion) -> dict[str, float]:
-    """Precision, recall, F1, FPR, FNR, accuracy. NaN when undefined."""
+    """Precision, recall, F1, FPR, FNR, accuracy, Youden J. NaN when undefined."""
     precision = _div(c.tp, c.tp + c.fp)
     recall = _div(c.tp, c.tp + c.fn)
     if math.isnan(precision) or math.isnan(recall) or precision + recall == 0:
         f1 = 0.0 if c.tp + c.fn > 0 else NAN
     else:
         f1 = 2 * precision * recall / (precision + recall)
+    fpr = _div(c.fp, c.fp + c.tn)
     return {
         "precision": precision,
         "recall": recall,
         "f1": f1,
-        "fpr": _div(c.fp, c.fp + c.tn),
+        "fpr": fpr,
         "fnr": _div(c.fn, c.fn + c.tp),
         "accuracy": _div(c.tp + c.tn, c.n),
+        # Youden's J = TPR - FPR: 0 for a tool that flags everything (or nothing),
+        # which F1 hides on balanced slices (flag-all scores F1 = 0.67).
+        "youden": recall - fpr,
     }
 
 
@@ -129,7 +133,7 @@ def summarize(
     c = confusion(labels, preds)
     row: dict[str, float] = {**asdict(c), "n": c.n, **rates(c)}
     row["roc_auc"] = roc_auc(labels, scores)
-    for metric in ("f1", "recall", "fpr"):
+    for metric in ("f1", "recall", "fpr", "youden"):
         lo, hi = bootstrap_ci(labels, preds, metric, n_boot=n_boot, seed=seed)
         row[f"{metric}_ci_lo"], row[f"{metric}_ci_hi"] = lo, hi
     row.update(latency_stats(latencies_ms))
