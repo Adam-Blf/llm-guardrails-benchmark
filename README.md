@@ -1,7 +1,7 @@
 # llm-guardrails-benchmark
 
 <!-- adam-badges:start -->
-[![version](https://img.shields.io/badge/version-0.4.0-163767?style=flat-square)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-0.5.0-163767?style=flat-square)](CHANGELOG.md)
 [![CI](https://img.shields.io/github/actions/workflow/status/Adam-Blf/llm-guardrails-benchmark/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/Adam-Blf/llm-guardrails-benchmark/actions/workflows/ci.yml)
 [![commits](https://img.shields.io/github/commit-activity/t/Adam-Blf/llm-guardrails-benchmark?color=001329&label=commits&style=flat-square)](https://github.com/Adam-Blf/llm-guardrails-benchmark/commits)
 [![visites](https://hits.sh/github.com/Adam-Blf/llm-guardrails-benchmark.svg?style=flat-square&label=visites&color=001329)](https://hits.sh/github.com/Adam-Blf/llm-guardrails-benchmark/)
@@ -12,7 +12,23 @@
 
 Benchmark de guardrails pour la sécurité des LLM et des agents LLM. Projet du cours MLOps (XDE826) du Mastère Data Engineering et IA de l'EFREI.
 
-Le dépôt est en construction : le paquet `guardbench` porte pour l'instant les métriques de détection et leur intégration continue.
+Le dépôt est en construction. Le paquet `guardbench` porte les jeux de données, les adaptateurs d'outils, le runner et l'analyse. Les résultats et le rapport arrivent dans les versions suivantes.
+
+## Lancer avec Docker
+
+Une seule commande construit l'image, démarre Ollama, télécharge Llama Guard 3 1B et Qwen2.5 1.5B, puis exécute tous les outils CPU, l'analyse et les figures :
+
+```bash
+docker compose up --build
+```
+
+Les résultats arrivent dans `results/docker-cpu` (variable `RUN_NAME` pour changer de nom). Les clés facultatives (`LAKERA_API_KEY`, `HF_TOKEN`) se placent dans un fichier `.env` copié depuis `.env.example`.
+
+## Lancer sur Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Adam-Blf/llm-guardrails-benchmark/blob/main/notebooks/benchmark_colab.ipynb)
+
+Le notebook `notebooks/benchmark_colab.ipynb` relance le même CLI sur un GPU T4 gratuit, avec 250 exemples par classe et des modèles plus lourds (Llama Guard 3 1B et 8B via `transformers`, Prompt-Guard-86M). Il écrit dans `results/colab-gpu` puis propose les résultats en archive zip. Les latences GPU sont rapportées à part et ne se comparent pas aux latences CPU.
 
 ## Auteurs
 
