@@ -4,6 +4,15 @@ Toutes les évolutions notables du projet sont consignées ici.
 Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 La version de référence est celle de `pyproject.toml`.
 
+## [0.4.0] - 2026-11-05
+
+### Ajouté
+
+- Runner : chaque outil passe sur toute la suite, trois appels de chauffe exclus de la latence, écriture au fil de l'eau et reprise sans doublon d'une exécution interrompue.
+- Exécution multi-processus pour les outils purement Python (Rebuff), la latence restant mesurée appel par appel dans chaque processus.
+- Analyse : tables par outil et famille de risque, par source, synthèse par outil et matrice de couverture revendiquée ou mesurée.
+- Interface en ligne de commande `python -m guardbench` (`run`, `analyse`, `figures`, `report`, `list`).
+
 ## [0.3.0] - 2026-11-05
 
 ### Ajouté
