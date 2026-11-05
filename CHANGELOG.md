@@ -4,6 +4,17 @@ Toutes les évolutions notables du projet sont consignées ici.
 Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 La version de référence est celle de `pyproject.toml`.
 
+## [0.2.0] - 2026-11-05
+
+### Ajouté
+
+- Sept tranches de données étiquetées, une par famille de risque : injection directe (deepset, safe-guard), jailbreak (jackhhao), injection indirecte (courriels BIPIA, appariés propre ou piégé), abus d'outils d'agent (réponses d'outils InjecAgent), toxicité (ToxicChat), fuite de PII (ai4privacy EN et FR) et un jeu bénin français avec 40 faux positifs difficiles écrits à la main.
+- Sources épinglées par révision (commit Hub ou Git), cache local, échantillonnage stratifié à graine fixe.
+
+### Modifié
+
+- Champ `license` du `pyproject.toml` au format SPDX.
+
 ## [0.1.0] - 2026-11-05
 
 ### Ajouté
