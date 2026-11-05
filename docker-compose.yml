@@ -1,0 +1,46 @@
+# One command: docker compose up --build
+# Runs every CPU tool, then the analysis and the figures, into results/docker-cpu.
+services:
+  ollama:
+    image: ollama/ollama:0.40.14
+    volumes:
+      - ollama:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      retries: 30
+
+  ollama-pull:
+    image: ollama/ollama:0.40.14
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: ollama:11434
+    entrypoint: ["sh", "-c", "ollama pull llama-guard3:1b && ollama pull qwen2.5:1.5b"]
+
+  bench:
+    build: .
+    depends_on:
+      ollama-pull:
+        condition: service_completed_successfully
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      RUN_NAME: ${RUN_NAME:-docker-cpu}
+    volumes:
+      - ./results:/app/results
+      - ./reports/figures:/app/reports/figures
+      - hf-cache:/cache
+    entrypoint: ["sh", "-c"]
+    command:
+      - >-
+        python -m guardbench --run $$RUN_NAME run --workers 4
+        && python -m guardbench --run $$RUN_NAME analyse
+        && python -m guardbench --run $$RUN_NAME figures --out reports/figures/$$RUN_NAME
+
+volumes:
+  ollama:
+  hf-cache:

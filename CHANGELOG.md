@@ -4,6 +4,15 @@ Toutes les évolutions notables du projet sont consignées ici.
 Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 La version de référence est celle de `pyproject.toml`.
 
+## [0.5.0] - 2026-11-05
+
+### Ajouté
+
+- `Dockerfile` et `docker-compose.yml` : benchmark CPU complet en une commande, Ollama et ses modèles compris, versions figées par `docker/constraints.txt`.
+- Notebook Colab `notebooks/benchmark_colab.ipynb` pour une exécution GPU plus large, rangée dans `results/colab-gpu`.
+- Llama Guard 3 8B chargé en 4 bits sur GPU pour tenir dans les 16 Go d'un T4.
+- Workflow de release sur tag : contrôle de version, wheel et sdist, notes tirées du CHANGELOG, image publiée sur GHCR.
+
 ## [0.4.0] - 2026-11-05
 
 ### Ajouté

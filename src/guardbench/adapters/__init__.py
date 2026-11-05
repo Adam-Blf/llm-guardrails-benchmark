@@ -64,7 +64,7 @@ def _llama_guard_hf_1b() -> Guardrail:
 def _llama_guard_hf_8b() -> Guardrail:
     from guardbench.adapters.llama_guard import LlamaGuardHF
 
-    return LlamaGuardHF("meta-llama/Llama-Guard-3-8B")
+    return LlamaGuardHF("meta-llama/Llama-Guard-3-8B", load_4bit=True)
 
 
 def _nemo() -> Guardrail:
