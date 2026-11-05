@@ -90,3 +90,12 @@ def test_cost_per_1k():
 def test_cli_parser():
     args = build_parser().parse_args(["--run", "x", "run", "--tools", "a", "b"])
     assert args.run == "x" and args.tools == ["a", "b"] and args.n_per_class == 100
+
+
+def test_figures_are_drawn(run_dir, tmp_path):
+    from guardbench.report.figures import draw_all
+
+    path, _ = run_dir
+    analyse(path, n_boot=10)
+    files = draw_all(path, tmp_path / "fig")
+    assert len(files) == 7 and all(f.stat().st_size > 1000 for f in files)

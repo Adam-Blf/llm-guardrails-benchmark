@@ -43,8 +43,7 @@ def heatmap(metrics: pd.DataFrame, order: list[str], out: Path, metric: str) -> 
         index=order, columns=DETECTION_TASKS)
     fig, ax = plt.subplots(figsize=(7.2, 0.42 * len(order) + 1.2), constrained_layout=True)
     data = np.ma.masked_invalid(pivot.to_numpy(dtype=float))
-    cmap = matplotlib.colormaps["RdBu" if youden else "cividis"].copy()
-    cmap.set_bad("#EEF1F5")
+    cmap = matplotlib.colormaps["RdBu" if youden else "cividis"].with_extremes(bad="#EEF1F5")
     lo = -1 if youden else 0
     im = ax.imshow(data, cmap=cmap, vmin=lo, vmax=1, aspect="auto")
     for (i, j), v in np.ndenumerate(pivot.to_numpy(dtype=float)):
