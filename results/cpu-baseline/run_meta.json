@@ -1,0 +1,92 @@
+{
+  "n_per_class": 100,
+  "seed": 42,
+  "n_samples": 1240,
+  "environment": {
+    "guardbench": "0.1.0",
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "cpu_count": 8,
+    "torch_threads": 8,
+    "device": "cpu",
+    "torch": "2.15.0+cpu"
+  },
+  "data": [
+    {
+      "source": "hf:deepset/prompt-injections/data/test-00000-of-00001-701d16158af87368.parquet",
+      "revision": "4f61ecb038e9c3fb77e21034b22511b523772cdd",
+      "licence": "Apache-2.0"
+    },
+    {
+      "source": "hf:xTRam1/safe-guard-prompt-injection/data/test-00000-of-00001.parquet",
+      "revision": "a3a877d608f37b7d20d9945671902df895ecdb46",
+      "licence": "unspecified"
+    },
+    {
+      "source": "hf:jackhhao/jailbreak-classification/balanced/jailbreak_dataset_test_balanced.csv",
+      "revision": "2f2ceeb39658696fd3f462403562b6eea5306287",
+      "licence": "Apache-2.0"
+    },
+    {
+      "source": "hf:lmsys/toxic-chat/data/0124/toxic-chat_annotation_test.csv",
+      "revision": "29df8e4dba60e1f4af4b4075c0705c5b313548a8",
+      "licence": "CC-BY-NC-4.0"
+    },
+    {
+      "source": "hf:ai4privacy/pii-masking-300k/data/validation/1english_openpii_8k.jsonl",
+      "revision": "c8c77895a005822682b66ab547fc0422579bc1d3",
+      "licence": "ai4privacy licence (academic use)"
+    },
+    {
+      "source": "hf:ai4privacy/pii-masking-300k/data/validation/french_openpii_8k.jsonl",
+      "revision": "c8c77895a005822682b66ab547fc0422579bc1d3",
+      "licence": "ai4privacy licence (academic use)"
+    },
+    {
+      "source": "hf:tatsu-lab/alpaca/data/train-00000-of-00001-a09b74b3ef9c3b56.parquet",
+      "revision": "dce01c9b08f87459cf36a430d809084718273017",
+      "licence": "CC-BY-NC-4.0"
+    },
+    {
+      "source": "hf:jpacifico/French-Alpaca-dataset-Instruct-110K/Acquiesce_data_110k_instructions.json",
+      "revision": "e153ef14ea6837d3b07a802bc15113a14f8f71eb",
+      "licence": "Apache-2.0"
+    },
+    {
+      "source": "github:microsoft/BIPIA/benchmark/email/test.jsonl",
+      "revision": "a004b69ec0dd446e0afd461d98cb5e96e120a5d0",
+      "licence": "MIT"
+    },
+    {
+      "source": "github:microsoft/BIPIA/benchmark/text_attack_test.json",
+      "revision": "a004b69ec0dd446e0afd461d98cb5e96e120a5d0",
+      "licence": "MIT"
+    },
+    {
+      "source": "github:uiuc-kang-lab/InjecAgent/data/user_cases.jsonl",
+      "revision": "f19c9f2c79a41046eb13c03c51a24c567a8ffa07",
+      "licence": "MIT"
+    },
+    {
+      "source": "github:uiuc-kang-lab/InjecAgent/data/test_cases_dh_base.json",
+      "revision": "f19c9f2c79a41046eb13c03c51a24c567a8ffa07",
+      "licence": "MIT"
+    },
+    {
+      "source": "github:uiuc-kang-lab/InjecAgent/data/test_cases_dh_enhanced.json",
+      "revision": "f19c9f2c79a41046eb13c03c51a24c567a8ffa07",
+      "licence": "MIT"
+    },
+    {
+      "source": "github:uiuc-kang-lab/InjecAgent/data/test_cases_ds_base.json",
+      "revision": "f19c9f2c79a41046eb13c03c51a24c567a8ffa07",
+      "licence": "MIT"
+    },
+    {
+      "source": "github:uiuc-kang-lab/InjecAgent/data/test_cases_ds_enhanced.json",
+      "revision": "f19c9f2c79a41046eb13c03c51a24c567a8ffa07",
+      "licence": "MIT"
+    }
+  ]
+}

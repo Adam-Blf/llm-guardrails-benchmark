@@ -1,0 +1,131 @@
+{
+  "regex_baseline": {
+    "status": "ok",
+    "kind": "heuristic",
+    "claimed": [
+      "direct_injection",
+      "indirect_injection",
+      "jailbreak",
+      "pii",
+      "toxicity"
+    ],
+    "load_s": 0.0,
+    "n_new": 1240,
+    "n_total": 1240,
+    "errors_new": 0,
+    "workers": 1
+  },
+  "presidio": {
+    "status": "ok",
+    "kind": "ner",
+    "claimed": [
+      "pii"
+    ],
+    "load_s": 17.67,
+    "n_new": 1240,
+    "n_total": 1240,
+    "errors_new": 0,
+    "workers": 1
+  },
+  "protectai_deberta_v2": {
+    "status": "ok",
+    "kind": "classifier",
+    "claimed": [
+      "agent_tool_abuse",
+      "direct_injection",
+      "indirect_injection",
+      "jailbreak"
+    ],
+    "load_s": 24.28,
+    "n_new": 1240,
+    "n_total": 1240,
+    "errors_new": 0,
+    "workers": 1
+  },
+  "gliner2_gliguard": {
+    "status": "ok",
+    "kind": "classifier",
+    "claimed": [
+      "direct_injection",
+      "indirect_injection",
+      "jailbreak",
+      "toxicity"
+    ],
+    "load_s": 121.34,
+    "n_new": 1240,
+    "n_total": 1240,
+    "errors_new": 0,
+    "workers": 1
+  },
+  "gliner2_pii": {
+    "status": "ok",
+    "kind": "ner",
+    "claimed": [
+      "pii"
+    ],
+    "load_s": 123.15,
+    "n_new": 1240,
+    "n_total": 1240,
+    "errors_new": 0,
+    "workers": 1
+  },
+  "llama_guard3_1b": {
+    "status": "ok",
+    "kind": "llm",
+    "claimed": [
+      "jailbreak",
+      "toxicity"
+    ],
+    "load_s": 0.0,
+    "n_new": 1240,
+    "n_total": 1240,
+    "errors_new": 2,
+    "workers": 1
+  },
+  "nemo_guardrails": {
+    "status": "ok",
+    "kind": "llm",
+    "claimed": [
+      "direct_injection",
+      "jailbreak",
+      "pii",
+      "toxicity"
+    ],
+    "load_s": 5.97,
+    "n_new": 1240,
+    "n_total": 1240,
+    "errors_new": 0,
+    "workers": 1
+  },
+  "llm_guard": {
+    "status": "ok",
+    "kind": "classifier",
+    "claimed": [
+      "direct_injection",
+      "indirect_injection",
+      "jailbreak",
+      "pii",
+      "toxicity"
+    ],
+    "load_s": 43.59,
+    "n_new": 1140,
+    "n_total": 1240,
+    "errors_new": 0,
+    "workers": 1,
+    "subset_per_class": null
+  },
+  "rebuff_heuristic": {
+    "status": "ok",
+    "kind": "heuristic",
+    "claimed": [
+      "direct_injection",
+      "indirect_injection"
+    ],
+    "load_s": 0.0,
+    "n_new": 130,
+    "n_total": 130,
+    "errors_new": 0,
+    "workers": 6,
+    "subset_per_class": 10
+  }
+}

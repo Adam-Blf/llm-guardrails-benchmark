@@ -1,0 +1,10 @@
+tool,direct_injection,jailbreak,indirect_injection,agent_tool_abuse,toxicity,pii
+gliner2_gliguard,C+M,C+M,C,M,C+M,
+gliner2_pii,,,,,,C+M
+llama_guard3_1b,,C,,,C+M,M
+llm_guard,C+M,C,C,,C,C+M
+nemo_guardrails,C,C,,,C,C
+presidio,,,,,,C
+protectai_deberta_v2,C+M,C+M,C,C,,
+rebuff_heuristic,C,,C,,,
+regex_baseline,C,C,C,,C,C+M

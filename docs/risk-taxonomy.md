@@ -31,7 +31,9 @@ flowchart LR
     classDef guard fill:#0f766e,stroke:#134e4a,color:#fff
 ```
 
-Le schéma situe les trois points de contrôle d'une application à base d'agent. Le benchmark évalue le premier (entrée utilisateur) et le deuxième (contenu externe et réponses d'outils), parce que c'est là que se jouent l'injection directe, l'injection indirecte et le détournement d'outils.
+<!-- pdf-figure: reports/figures/guardrail-placement.png | Points de contrôle d'une application LLM à base d'agent. -->
+
+Le schéma (figure 1 dans le rapport PDF) situe les trois points de contrôle d'une application à base d'agent. Le benchmark évalue le premier (entrée utilisateur) et le deuxième (contenu externe et réponses d'outils), parce que c'est là que se jouent l'injection directe, l'injection indirecte et le détournement d'outils.
 
 ## Carte détaillée
 

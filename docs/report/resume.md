@@ -1,0 +1,5 @@
+# Résumé
+
+Les LLM et les agents qui s'en servent ouvrent des risques que le code classique ne connaissait pas : injection de consignes, contournement des garde-fous, fuite de données personnelles, contenus toxiques, abus des outils confiés à un agent. Nous avons cartographié ces risques en les rattachant à OWASP, MITRE ATLAS et NIST, puis comparé neuf outils de protection sur une même suite de 1 240 entrées en anglais et en français, réparties en sept familles.
+
+Aucun outil ne couvre tout. GLiNER2 en mode garde-fou obtient le meilleur équilibre sur les attaques (J de Youden de 0,52) et sur-bloque peu le français. DeBERTa de Protect AI détecte mieux l'injection directe et le jailbreak en anglais, mais refuse 40 % des pièges lexicaux français. Llama Guard 3 1B protège bien les agents et les données personnelles pour un coût de plusieurs secondes par appel. L'injection indirecte, cachée dans un document récupéré, échappe à tous les outils mesurés : elle se traite par l'architecture de l'application, pas par un filtre.
