@@ -4,6 +4,20 @@ Toutes les évolutions notables du projet sont consignées ici.
 Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionnage [SemVer](https://semver.org/lang/fr/).
 La version de référence est celle de `pyproject.toml`.
 
+## [1.0.0] - 2026-11-06
+
+### Ajouté
+
+- Exécution de référence `cpu-baseline` complète : neuf outils sur 1 240 entrées, LLM Guard compris. Rebuff a tourné sur un échantillon de 10 entrées par classe (`max_per_class`), son heuristique coûtant près de deux minutes par entrée.
+- Tableaux régénérés depuis les CSV (`python -m guardbench tables`) dans `docs/results.md` et le README, sections « Latence et coût » et « Recommandations par contexte » rédigées.
+- Rapport PDF complet (14 pages) : résumé et synthèse des outils sur la couverture, encadré « À retenir » sous le sommaire, conclusion.
+- `scripts/check_report.py` refuse le texte de remplissage (« texte de test », « lorem ipsum », « TODO ») et contrôle aussi la couverture et le sommaire.
+
+### Corrigé
+
+- `guardbench tables` n'insérait rien dans un bloc vide ni dans un fichier en CRLF, tout en annonçant un succès. Test de non-régression sur les deux cas.
+- La couverture du rapport affichait la version figée à l'installation du paquet, et non celle de `pyproject.toml`.
+
 ## [0.6.0] - 2026-11-05
 
 ### Ajouté

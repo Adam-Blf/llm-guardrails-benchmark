@@ -7,7 +7,7 @@ import pytest
 
 import guardbench.runner as runner
 from guardbench.adapters.base import Decision, Guardrail
-from guardbench.analysis import analyse, cost_per_1k
+from guardbench.analysis import analyse, hours_per_1k
 from guardbench.cli import build_parser
 from guardbench.types import Sample, Task
 
@@ -83,8 +83,8 @@ def test_skipped_tool_is_recorded(tmp_path, monkeypatch):
     assert status["off"] == {"status": "skipped", "reason": "no key"}
 
 
-def test_cost_per_1k():
-    assert cost_per_1k(3600.0, 1.0) == pytest.approx(1.0)
+def test_hours_per_1k():
+    assert hours_per_1k(3600.0) == pytest.approx(1.0)
 
 
 def test_cli_parser():
@@ -99,3 +99,11 @@ def test_figures_are_drawn(run_dir, tmp_path):
     analyse(path, n_boot=10)
     files = draw_all(path, tmp_path / "fig")
     assert len(files) == 7 and all(f.stat().st_size > 1000 for f in files)
+
+
+def test_subsample_is_stratified_and_seeded():
+    suite = _suite()
+    sub = runner.subsample(suite, 1, seed=3)
+    cells = {(s.task, s.label) for s in sub}
+    assert len(sub) == len(cells) == 3
+    assert [s.uid for s in sub] == [s.uid for s in runner.subsample(suite, 1, seed=3)]

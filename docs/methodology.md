@@ -72,7 +72,7 @@ La latence est mesurée autour de l'appel de l'adaptateur, sur la machine de l'e
 
 Les exécutions sur CPU et sur GPU sont rangées dans deux dossiers distincts (`results/cpu-baseline` et `results/colab-gpu`) et chaque fichier `run_meta.json` décrit la machine. Les latences de ces deux exécutions ne se comparent pas entre elles et ne sont jamais mélangées dans un même tableau.
 
-Le coût est estimé pour les outils locaux à partir de la latence moyenne et d'un prix horaire de machine, sous l'hypothèse d'appels séquentiels sur une instance dédiée. C'est un ordre de grandeur, pas une facture, et le prix retenu est donné dans les résultats. Pour Lakera, le tarif dépend d'un contrat et n'est pas publié.
+Le coût des outils locaux est exprimé en heures-machine pour 1 000 requêtes traitées une à une, calculées depuis la latence moyenne. Multiplié par le prix horaire de l'instance choisie, ce nombre donne le coût de calcul. Nous ne fixons pas de prix à la place du lecteur, il dépend du fournisseur, de la région et de l'engagement. Pour Lakera, le tarif relève d'un contrat et n'est pas publié.
 
 ## Reproductibilité
 

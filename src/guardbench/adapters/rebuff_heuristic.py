@@ -34,6 +34,9 @@ class RebuffHeuristic(Guardrail):
     name = "rebuff_heuristic"
     kind = "heuristic"
     parallel_ok = True
+    # Median 30 s per input on the reference laptop (string similarity over every
+    # generated keyword phrase, quadratic in input length): full suite out of reach.
+    max_per_class = 10
     claimed = frozenset({Task.DIRECT_INJECTION, Task.INDIRECT_INJECTION})
 
     def __init__(self) -> None:

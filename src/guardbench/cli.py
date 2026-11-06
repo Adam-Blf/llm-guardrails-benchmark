@@ -3,6 +3,7 @@
     run       execute the tools on the suite and write predictions
     analyse   compute metric tables from the predictions of a run
     figures   draw the charts of a run into reports/figures
+    tables    regenerate the result tables inside docs/results.md and README.md
     report    build the PDF report from the committed results
     list      show the registered tools and their availability
 """
@@ -47,6 +48,14 @@ def _cmd_figures(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_tables(args: argparse.Namespace) -> int:
+    from guardbench.report.tables import update
+
+    for md in args.files:
+        print(md, ", ".join(update(Path(md), Path(args.results) / args.run)))
+    return 0
+
+
 def _cmd_report(args: argparse.Namespace) -> int:
     from guardbench.report.build import build_pdf
 
@@ -87,6 +96,10 @@ def build_parser() -> argparse.ArgumentParser:
     f = sub.add_parser("figures", help="draw charts for a run")
     f.add_argument("--out", default="reports/figures")
     f.set_defaults(func=_cmd_figures)
+
+    t = sub.add_parser("tables", help="regenerate marked Markdown tables from a run")
+    t.add_argument("files", nargs="*", default=["docs/results.md", "README.md"])
+    t.set_defaults(func=_cmd_tables)
 
     rep = sub.add_parser("report", help="build the PDF report")
     rep.add_argument("--out", default="reports")

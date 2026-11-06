@@ -34,6 +34,9 @@ class Guardrail(ABC):
     # Pure-Python, single-threaded tools can be spread over worker processes:
     # per-call latency is still measured inside each worker on one core.
     parallel_ok: bool = False
+    # Tools too slow for the full suite on a CPU run a seeded, stratified subset
+    # of this many rows per (task, label) cell. None means the whole suite.
+    max_per_class: int | None = None
 
     def available(self) -> tuple[bool, str]:
         return True, ""

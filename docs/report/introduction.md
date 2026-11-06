@@ -1,0 +1,9 @@
+# Introduction
+
+Une application qui place un LLM devant des utilisateurs, ou qui lui donne des outils, hérite d'une surface d'attaque que le code classique ne connaissait pas. Le modèle lit dans un même flux les consignes du développeur, la question de l'utilisateur et des documents venus de l'extérieur. Rien dans ce flux ne marque ce qui fait autorité. Un courriel peut donner un ordre, une page web peut réécrire une consigne, et un agent qui dispose d'un outil de paiement peut exécuter l'un comme l'autre.
+
+Les guardrails sont la réponse la plus répandue en production. Ce sont des filtres placés avant ou après le modèle, qui décident de laisser passer un texte ou de le bloquer. L'offre a explosé depuis 2023, des règles écrites à la main aux services commerciaux, en passant par les petits classifieurs spécialisés et les LLM utilisés comme juges. Les éditeurs publient leurs propres chiffres, sur leurs propres jeux de données, ce qui rend toute comparaison hasardeuse.
+
+Nous nous sommes fixé quatre objectifs, repris de l'énoncé du projet. Le premier est de cartographier les risques de sécurité des LLM et des agents à partir de la littérature et des référentiels existants. Le deuxième consiste à sélectionner et faire tourner plusieurs guardrails représentatifs, dont un fondé sur GLiNER2. Le troisième est de concevoir une méthode d'évaluation qu'un tiers puisse rejouer et contester. Le dernier est d'en tirer des recommandations d'usage selon le contexte de déploiement.
+
+Le rapport suit cet ordre. La première partie présente la cartographie des risques. La deuxième décrit la méthode, ses choix et ses limites. La troisième donne les résultats mesurés et les recommandations. Tout ce qui est chiffré ici sort d'une exécution réelle du code publié dans le dépôt, et les prédictions ligne par ligne y sont versionnées.

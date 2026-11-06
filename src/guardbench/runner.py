@@ -12,6 +12,7 @@ import json
 import logging
 import os
 import platform
+import random
 import time
 from pathlib import Path
 
@@ -97,7 +98,19 @@ def _verdicts(tool: Guardrail, todo: list[Sample], workers: int):
             yield tool.predict(sample.text)
 
 
-def run_tool(tool: Guardrail, suite: list[Sample], pred_path: Path, workers: int = 1) -> dict:
+def subsample(suite: list[Sample], per_class: int, seed: int) -> list[Sample]:
+    """Seeded subset with at most per_class rows in each (task, label) cell, suite order kept."""
+    cells: dict[tuple[str, int], list[Sample]] = {}
+    for s in suite:
+        cells.setdefault((s.task.value, s.label), []).append(s)
+    rng = random.Random(seed)
+    keep = {s.uid for group in cells.values()
+            for s in rng.sample(group, min(per_class, len(group)))}
+    return [s for s in suite if s.uid in keep]
+
+
+def run_tool(tool: Guardrail, suite: list[Sample], pred_path: Path, workers: int = 1,
+             seed: int = 42) -> dict:
     """Run one tool over the suite. Returns its status record."""
     ok, reason = tool.available()
     if not ok:
@@ -110,6 +123,8 @@ def run_tool(tool: Guardrail, suite: list[Sample], pred_path: Path, workers: int
         log.exception("load failed for %s", tool.name)
         return {"status": "failed", "reason": f"load: {type(exc).__name__}: {exc}"[:400]}
     load_s = time.perf_counter() - t0
+    if tool.max_per_class:
+        suite = subsample(suite, tool.max_per_class, seed)
     for sample in suite[:_WARMUP]:  # first calls pay lazy init; keep them out of latency
         tool.predict(sample.text)
     done = _done_uids(pred_path)
@@ -138,6 +153,7 @@ def run_tool(tool: Guardrail, suite: list[Sample], pred_path: Path, workers: int
         "n_total": len(done) + len(todo),
         "errors_new": errors,
         "workers": workers if tool.parallel_ok else 1,
+        "subset_per_class": tool.max_per_class,
     }
 
 
@@ -165,7 +181,7 @@ def run(
     for name in tools:
         log.info("=== %s", name)
         status[name] = run_tool(
-            make(name), suite, run_dir / "predictions" / f"{name}.csv", workers
+            make(name), suite, run_dir / "predictions" / f"{name}.csv", workers, seed
         )
         status_path.write_text(json.dumps(status, indent=2), encoding="utf-8")
     meta = {"n_per_class": n_per_class, "seed": seed, "n_samples": len(suite),
