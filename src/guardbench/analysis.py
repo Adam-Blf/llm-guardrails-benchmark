@@ -79,6 +79,8 @@ def overall(metrics: pd.DataFrame, df: pd.DataFrame, status: dict) -> pd.DataFra
                 "fr_benign_fpr": fr["fpr"].iloc[0] if len(fr) else float("nan"),
                 "lat_p50_ms": lat.quantile(0.5),
                 "lat_p95_ms": lat.quantile(0.95),
+                "lat_mean_ms": lat.mean(),
+                "hours_per_1k": hours_per_1k(lat.mean()),
                 "errors": int(df[(df["tool"] == tool)]["is_error"].sum()),
             }
         )
@@ -96,9 +98,9 @@ def coverage(metrics: pd.DataFrame, status: dict) -> pd.DataFrame:
     return table.map(lambda v: v.lstrip("+"))
 
 
-def cost_per_1k(lat_ms_mean: float, hourly_usd: float) -> float:
-    """Compute cost of 1 000 sequential calls on one machine billed by the hour."""
-    return lat_ms_mean / 1000 / 3600 * hourly_usd * 1000
+def hours_per_1k(lat_ms_mean: float) -> float:
+    """Machine-hours for 1 000 sequential calls. Cost = this x hourly price of the host."""
+    return lat_ms_mean * 1000 / 1000 / 3600
 
 
 def analyse(run_dir: Path, n_boot: int = 1000, seed: int = 42) -> dict[str, pd.DataFrame]:
